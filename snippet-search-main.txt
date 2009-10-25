@@ -1,0 +1,17 @@
+<?php $this->includeSnippet('search-form'); ?>
+
+<?php
+if (isset($_GET['search'])) {
+  foreach (fsearch($_GET['search']) as $article) {
+?>
+<div class="entry">
+  <h2><?php echo $article->link(); ?></h2>
+  <?php echo $article->content(); ?>
+  <?php if ($article->hasContent('extended')) echo $article->link('Continue Reading&#8230;'); ?>
+  <p class="info">Posted by <?php echo $article->author(); ?> on <?php echo $article->date(); ?></p>
+</div>
+<?php
+ }
+}
+?>
+

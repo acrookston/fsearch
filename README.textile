@@ -1,0 +1,79 @@
+h1. FSearch - MySQL full-text search for your Frog CMS
+
+h2. About
+
+*The FSearch plugin adds full-text search to your Frog CMS.*
+This plugin only works for MySQL based installations.
+
+Created by Andrew Crookston at CA Systems
+Email: andrew at casystems dot se
+Web: "http://www.casystems.se":http://www.casystems.se	
+
+MySQL full-text search is a good choice if your running your site on a co-hosted server, since these solutions don't allow you to run external search engine software.
+
+However if you are running a very large site or one with a lot of visitors the MySQL full-text search is probably not be the best option for you.
+I recommend that you look into Solr, Sphinx or Xapian for better performance and functionality.
+
+*Enjoy!*
+
+h2. How it works
+
+For every page you want searchable, check the "Make this page searchable" checkbox.
+When you save the page the Title and BODY page-part will be copied into a search-optimized text field and indexed by MySQL.
+
+Read up on the MySQL full-text search over at mysql.com:
+"MySQL Full-Text":http://dev.mysql.com/doc/refman/5.0/en/fulltext-search.html
+"Boolean Queries":http://dev.mysql.com/doc/refman/5.0/en/fulltext-boolean.html
+
+
+h2. Installation
+
+This plugin adds fields and indexes to your database tables so make sure you have a backup before activating the plugin!
+
+h3. Download
+
+There are two ways of downloading FSearch:
+
+*1. Get the tarball*
+Download the tarball from here: "http://github.com/acrookston/fsearch/tarball/master":http://github.com/acrookston/fsearch/tarball/master
+Unpack the tarball in: @[your_frog_installation]/frog/plugins/@
+
+
+*2. With Git*
+To install FSearch make sure you have git installed on your system.
+Then follow these easy instructions:
+<pre>
+cd [your_frog_installation]/frog/plugins/
+git clone git://github.com/acrookston/ckfrog.git
+</pre>
+
+h3. Activate
+
+*1. Enter the admin page* of your Frog installation and activate the plugin.
+
+*2. Create two snippets*
+First snippet, call it search-main and copy the contents of @snippet-search-main.txt@
+Second snippet, call it search-form and copy the contents of @snippets-search-form.txt@
+
+*3. Create a search page*
+My recommendation is to use @/search@ but you can use whatever URL you want. Just remember to update the URL in the search-main snippet to reflect your search page URL.
+The body contents of your search page should be: @<?php $this->includeSnippet('search-main'); ?>@
+
+Now your ready to go!
+
+You may also add the search-form snippet to your header for a site-wide search form.
+
+h2. Road map
+
+* Support for searching multiple page parts.
+* Rolling back database changes when disabling the plugin.
+
+h2. Disclaimer and License
+
+Released under GPL License.
+The source code is available at github: "http://github.com/acrookston/fsearch/tree":http://github.com/acrookston/fsearch/tree
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.

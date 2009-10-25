@@ -1,0 +1,4 @@
+<form method="get" action="<?php echo $this->find('/search')->url(); ?>">
+  Search: <input type="text" name="search" value="<?php echo (isset($_GET['search']) > 0 ? $_GET['search'] : ''); ?>"/>
+  <input type="submit" value="Search"/>
+</form>
