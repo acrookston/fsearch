@@ -44,7 +44,7 @@ To install FSearch make sure you have git installed on your system.
 Then follow these easy instructions:
 <pre>
 cd [your_frog_installation]/frog/plugins/
-git clone git://github.com/acrookston/ckfrog.git
+git clone git://github.com/acrookston/fsearch.git
 </pre>
 
 h3. Activate
@@ -66,6 +66,7 @@ You may also add the search-form snippet to your header for a site-wide search f
 h2. Road map
 
 * Support for searching multiple page parts.
+* Support optional Boolean Full-Text search (see "MySQL website":http://dev.mysql.com/doc/refman/5.0/en/fulltext-boolean.html for details)
 * Rolling back database changes when disabling the plugin.
 
 h2. Disclaimer and License
