@@ -52,7 +52,7 @@ Plugin::setInfos(array(
 AutoLoader::addFile('FSearch', CORE_ROOT.'/plugins/fsearch/FSearch.php');
 
 // Add observers for page editing
-Observer::observe('view_page_edit_plugins', 'fsearch_display_checkbox');
+Observer::observe('view_page_edit_plugins', 'fsearch_display_select');
 Observer::observe('part_edit_after_save',   'fsearch_clean_contents');
 
 
@@ -75,12 +75,15 @@ function fsearch($search) {
  *
  * @param Page $page The object instance for the page that is being edited.
  */
-function fsearch_display_checkbox($page) {
+function fsearch_display_select($page) {
   echo '<p><label for="page_is_fsearchable">'.__('Make this page searchable').': </label>'
-      .'<input type="checkbox" value="1" id="page_is_fsearchable" name="page[is_fsearchable]" '
-      .(isset($page->is_fsearchable) && $page->is_fsearchable == '1' ? ' checked="checked"': '').'/><br/>'
+      .'<select type="checkbox" value="1" id="page_is_fsearchable" name="page[is_fsearchable]" '
+      .'<option value="1"'.(isset($page->is_fsearchable) && $page->is_fsearchable == '1' ? ' selected="selected"': '').'>Yes</option>'
+      .'<option value="0"'.(!isset($page->is_fsearchable) || $page->is_fsearchable == '0' ? ' selected="selected"': '').'>No</option>'
+      .'</select><br/>'
       .'<small>'.__('All code/tags will be stripped from the Body part and made searchable').'</small></p>';
 }
+
 
 /**
  * Executes on saving a page_part.
