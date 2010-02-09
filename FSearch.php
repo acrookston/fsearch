@@ -30,7 +30,7 @@
 /**
  * class FSearch
  *
- * Retrieves pages and searches page parts and page titles.
+ * MySQL full-text search for page-parts and titles.
  *
  * @author Andrew Crookston <andrew@casystems.se>
  * @since Frog version 0.9.5
@@ -42,10 +42,11 @@ class FSearch extends Record {
   /**
    * class FSearch
    *
-   * Retrieves pages and searches page parts and page titles.
+   * Search and retrieves Page objects.
    *
    * @author Andrew Crookston <andrew@casystems.se>
    * @since Frog version 0.9.5
+   * @return Array of Page objects or empty Array
    */
   public static function search($args = null) {
     // Collect attributes...
@@ -78,7 +79,7 @@ class FSearch extends Record {
     $stmt->execute();
     
     $objects = array();
-    while ($obj = $stmt->fetchObject('FSearch')) {
+    while ($obj = $stmt->fetchObject()) {
       $parent = self::findParentById($obj->parent_id);
       $obj->part = get_parts($obj->id);
       $objects[] = new Page($obj, $parent);
@@ -91,7 +92,7 @@ class FSearch extends Record {
    *
    * This method a copy of model Page::find
    * It's a copy because the model Page is not publicly available in the front-end.
-   * A slight modification is made, the Object names are changed to FSearch for compatibility.
+   * Some modifications are done to adapt the method to the front-end environment.
    *
    * @author Philippe Archambault <philippe.archambault@gmail.com>
    * @author Martijn van der Kleijn <martijn.niji@gmail.com>
@@ -117,18 +118,16 @@ class FSearch extends Record {
            " LEFT JOIN $tablename_user AS creator ON page.created_by_id = creator.id".
            " LEFT JOIN $tablename_user AS updator ON page.updated_by_id = updator.id".
            " $where_string $order_by_string $limit_string";
-    
     $stmt = self::$__CONN__->prepare($sql);
     $stmt->execute();
-
-    // Run!
+    
     if ($limit == 1) {
-      $obj = $stmt->fetchObject('FSearch');
+      $obj = $stmt->fetchObject();
       $parent = self::findParentById($obj->parent_id);
       return new Page($obj, $parent);
     } else {
       $objects = array();
-      while ($obj = $stmt->fetchObject('FSearch')) {
+      while ($obj = $stmt->fetchObject()) {
         $parent = self::findParentById($obj->parent_id);
         $objects[] = new Page($obj, $parent);
       }
@@ -141,7 +140,6 @@ class FSearch extends Record {
    *
    * This method a copy of model Page::findById
    * It's a copy because the model Page is not publicly available in the front-end.
-   * A slight modification is made, the Object names are changed to FSearch for compatibility
    *
    * @author Philippe Archambault <philippe.archambault@gmail.com>
    * @author Martijn van der Kleijn <martijn.niji@gmail.com>
@@ -165,7 +163,6 @@ class FSearch extends Record {
    */
   public static function findParentById($id) {
     if ($id == 0) { return false; }
-    
     return self::find(array(
         'where' => 'page.id='.(int)$id,
         'limit' => 1

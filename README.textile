@@ -63,6 +63,11 @@ Now your ready to go!
 
 You may also add the search-form snippet to your header for a site-wide search form.
 
+h2. Changelog
+
+* 2010-02-09 *
+* BUGFIX: Now indexes titles and page part correctly
+
 h2. Road map
 
 * Support for searching multiple page parts.

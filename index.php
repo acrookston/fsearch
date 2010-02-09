@@ -75,7 +75,7 @@ function fsearch($search) {
  *
  * @param Page $page The object instance for the page that is being edited.
  */
-function fsearch_display_checkbox(&$page) {
+function fsearch_display_checkbox($page) {
   echo '<p><label for="page_is_fsearchable">'.__('Make this page searchable').': </label>'
       .'<input type="checkbox" value="1" id="page_is_fsearchable" name="page[is_fsearchable]" '
       .(isset($page->is_fsearchable) && $page->is_fsearchable == '1' ? ' checked="checked"': '').'/><br/>'
@@ -88,11 +88,11 @@ function fsearch_display_checkbox(&$page) {
  *
  * @param PagePart $page_part The object instance for the page_part that is being edited.
  */
-function fsearch_clean_contents(&$page_part) {
+function fsearch_clean_contents($page_part) {
   global $__FROG_CONN__;
   // Currently we only support searching in the Body-part (This is in the @todo)
   if ($page_part->name == 'body') {
-    $page = FSearch::findById($page_part->page_id);
+    $page = Page::findById($page_part->page_id);
     $title = '';
     if ($page) {
       $title = $page->title;
@@ -104,16 +104,3 @@ function fsearch_clean_contents(&$page_part) {
   }
 }
 
-/*
-<p><strong><?php echo $num_comments = comments_count($this); ?></strong> comment<?php if ($num_comments != 1) { echo 's'; } ?></p>
-<?php $comments = comments($this); ?>
-<ol class="comments">
-<?php foreach ($comments as $comment): ?>
-  <li class="comment">
-    <p><?php echo $comment->body(); ?></p>
-    <p> &#8212; <?php echo $comment->name(); ?> <small class="comment-date"><?php echo $comment->date(); ?></small></p>
-  </li>
-<?php endforeach; // comments; ?>
-</ol>
-
-*/
