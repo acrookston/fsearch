@@ -99,11 +99,13 @@ function fsearch_clean_contents($page_part) {
     $title = '';
     if ($page) {
       $title = $page->title;
+      if ($page->is_fsearchable == 1) {
+        $sql = 'UPDATE '.TABLE_PREFIX.'page_part '.
+               ' SET content_fsearchable = '.$__FROG_CONN__->quote($title."\n\n".strip_tags($page_part->content)).' '.
+               ' WHERE id='.(int)$page_part->id;
+        $__FROG_CONN__->exec($sql);
+      }
     }
-    $sql = 'UPDATE '.TABLE_PREFIX.'page_part '.
-           ' SET content_fsearchable = '.$__FROG_CONN__->quote($title."\n\n".strip_tags($page_part->content)).' '.
-           ' WHERE id='.(int)$page_part->id;
-    $__FROG_CONN__->exec($sql);
   }
 }
 
