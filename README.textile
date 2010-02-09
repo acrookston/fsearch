@@ -66,13 +66,13 @@ You may also add the search-form snippet to your header for a site-wide search f
 h2. Changelog
 
 * 2010-02-09 *
+* ADDED:  Now rolles back database changes when disabling the plugin (this means all "Make page searchable" settings are lost when disabled).
 * BUGFIX: Now indexes titles and page part correctly
 
 h2. Road map
 
 * Support for searching multiple page parts.
 * Support optional Boolean Full-Text search (see "MySQL website":http://dev.mysql.com/doc/refman/5.0/en/fulltext-boolean.html for details)
-* Rolling back database changes when disabling the plugin.
 
 h2. Disclaimer and License
 
