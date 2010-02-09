@@ -40,7 +40,7 @@ Plugin::setInfos(array(
     'id'          => 'fsearch',
     'title'       => 'FSearch - Frog MySQL Search',
     'description' => 'Provides MySQL full-text search capabilities.', 
-    'version'     => '0.1.0',
+    'version'     => '1.1.0',
     'license'     => 'GPLv3',
     'author'      => 'Andrew Crookston (CA Systems)',
     'website'     => 'http://www.casystems.se',

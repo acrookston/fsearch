@@ -39,7 +39,7 @@ Download the tarball from here: "http://github.com/acrookston/fsearch/tarball/ma
 Unpack the tarball in: @[your_frog_installation]/frog/plugins/@
 
 
-*2. With Git*
+*2. OR With Git*
 To install FSearch make sure you have git installed on your system.
 Then follow these easy instructions:
 <pre>
@@ -48,6 +48,12 @@ git clone git://github.com/acrookston/fsearch.git
 </pre>
 
 h3. Activate
+
+*Before you start*
+This guide is written as if FrogCMS was just installed and does not take any consideration to any changes you have made to your installation.
+
+The examples in this README and included snippets will only work if you have turned on MOD_REWRITE
+Please see "Remove the question mark from the URL":http://www.madebyfrog.com/docs/how-to/remove-the-question-mark-from-the-url.html for instructions on how to do this.
 
 *1. Enter the admin page* of your Frog installation and activate the plugin.
 
@@ -65,7 +71,7 @@ You may also add the search-form snippet to your header for a site-wide search f
 
 h2. Changelog
 
-* 2010-02-09 *
+*2010-02-09*
 * ADDED:  Now rolles back database changes when disabling the plugin (this means all "Make page searchable" settings are lost when disabled).
 * BUGFIX: Now indexes titles and page part correctly
 
