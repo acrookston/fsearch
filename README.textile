@@ -74,6 +74,7 @@ h2. Changelog
 *2010-02-09*
 * ADDED:  Now rolles back database changes when disabling the plugin (this means all "Make page searchable" settings are lost when disabled).
 * BUGFIX: Now indexes titles and page part correctly
+* BUGFIX: Fixed bug when updating the page with searchable or not status. Was caused by the element being a select.
 
 h2. Road map
 
